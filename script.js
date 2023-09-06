@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
     // 创建日历
     const days = ['日', '月', '火', '水', '木', '金', '土'];
     let calendarHTML = '<tr>';
@@ -7,10 +7,11 @@ document.addEventListener("DOMContentLoaded", function () {
         calendarHTML += `<th>${day}</th>`;
     }
 
+    // Create the day cells here (simplified without actual dates)
     for (let i = 0; i < 5; i++) {
         calendarHTML += '<tr>';
         for (let j = 0; j < 7; j++) {
-            calendarHTML += '<td onclick="addMemo(this)"></td>';
+            calendarHTML += '<td onclick="openMemo()"></td>';
         }
         calendarHTML += '</tr>';
     }
@@ -28,9 +29,14 @@ function updateDateTime() {
     document.getElementById("currentTime").textContent = now.toLocaleTimeString('ja-JP');
 }
 
-function addMemo(tdElement) {
-    const memo = prompt("请输入备忘录:");
-    if (memo) {
-        tdElement.textContent = memo;
-    }
+function openMemo() {
+    document.getElementById('memoModal').style.display = "block";
+}
+
+function saveMemo() {
+    document.getElementById('memoModal').style.display = "none";
+}
+
+document.querySelector('.close').onclick = function() {
+    document.getElementById('memoModal').style.display = "none";
 }
